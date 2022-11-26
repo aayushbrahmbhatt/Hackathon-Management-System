@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<title>Databases</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+    .container td, .container th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    text-align: center;
+    }
+    body {
+    font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color:#0e1119;
+    background-color:#1F2739;
+    }
+
+    h1 {
+    font-size:3em; 
+    font-weight: 300;
+    line-height:1em;
+    text-align: center;
+    color: #4DC3FA;
+    }
+
+    h2 {
+    font-size:1em; 
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    line-height:1em;
+    padding-bottom: 2em;
+    color: #1C6758;
+    }
+
+    h2 a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1C6758;
+    text-decoration: none;
+    }
+
+    .blue { color: #185875; }
+    .yellow { color: #1746A2; }
+
+    .container th h1 {
+        font-weight: bold;
+        font-size: 1em;
+    text-align: left;
+    color: #185875;
+    }
+
+    .container td {
+        font-weight: normal;
+        font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+        -moz-box-shadow: 0 2px 2px -2px #0E1119;
+            box-shadow: 0 2px 2px -2px #0E1119;
+    }
+
+    .container {
+        text-align: left;
+        overflow: hidden;
+        width: 100%;
+        margin: 0 auto;
+    display: table;
+    padding: 0 0 8em 0;
+    }
+
+    /* Background-color of the odd rows */
+    .container tr:nth-child(odd) {
+        background-color: #e8d9d3;
+    }
+
+    /* Background-color of the even rows */
+    .container tr:nth-child(even) {
+        background-color: #f88c49;
+    }
+
+    .container th {
+        background-color: #5F9DF7;
+    }
+
+    .container td:first-child { color: black; }
+
+    .container tr:hover {
+    background-color:   rgb(212, 67, 67);
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+    }
+
+    .container td:hover {
+    background-color: rgb(188, 188, 57);
+    color: #585515;
+    font-weight: bold;
+    
+    box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+    
+    transition-delay: 0s;
+        transition-duration: 0.4s;
+        transition-property: all;
+    transition-timing-function: line;
+    }
+
+    @media (max-width: 800px) {
+    .container td:nth-child(4),
+    .container th:nth-child(4) { display: none; }
+    }
+  </style>
+<body>
+
+<div class="w3-sidebar w3-bar-block w3-black w3-card" style="width:130px">
+  <h5 class="w3-bar-item" >Databases </h5>
+   {% comment %} <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Fade')">
+    <input type="submit" value="User">
+   </button>  {% endcomment %}
+
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Fade')">User</button> 
+   
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Left')">Hackathon</button>
+
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Right')">Participants</button> 
+
+  <button class="w3-bar-item w3-button tablink">
+    <a href="{% url 'index' %}">Go back</a>
+    
+  </button> 
+    
+   {% comment %} {% comment %}<button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top1')">Organizer</button> {% endcomment %}
+  
+  {% comment %} <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top2')">Home</button> {% endcomment %}
+  {% comment %} <button href="{{request.META.HTTP_REFERER}}" class="w3-bar-item w3-button tablink">Go back</button>  {% endcomment %}
+  {% comment %} <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top3')">Team</button>
+
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top4')">Team_info</button>
+
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top5')">Evaluation</button>
+
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top6')">Submission</button>
+
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top7')">Judge</button>   {% endcomment %}
+
+  <!-- <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Bottom')">Bottom</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Zoom')">Zoom</button> -->
+</div>
+
+<div style="margin-left:130px">
+  <div class="w3-padding" style = "color: white">Database Details</div>
+
+    <div id="Fade" class="w3-container city w3-animate-fade" style="display:none" >
+      <table border="1" bgcolor="lightblue"> 
+      
+      {% comment %} insert user {% endcomment %}
+        <form action='InsertUser'>
+          <input class = "btn-primary" style = "background-color: #ef6123;color: white;border: none;padding: 0.6%;font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;" type="submit" value="Insert User">
+      </form>
+
+      <center><form method="POST" action="sortUser">
+        
+        {% csrf_token %}
+        <label for="Sort"></label>
+            <select id="Sort" name="Sort" style = "background-color: white">
+                <option value="user_id">User ID</option>
+                <option value="email_id">Email</option>
+                <option value="name">Name</option>
+                <option value="dob">DOB</option>
+                <option value="age">Age</option>
+            </select>
+            <input type="submit" value="Sort"/>
+    </form>
+  <!-- </center> -->
+  <table class = "container">
+        <tr>
+          <th> User ID</th>
+          <th> Email ID</th>
+          <th> Name </th>
+          <th> Password</th>
+          <th> DOB </th>
+          <th> Age</th>
+          <th> Mobile Number </th>
+          <th> Edit </th>
+          <th> Delete </th>
+        </tr>
+        {% for result in userdata %}
+        <tr>
+            <td> {{result.user_id}} </td>
+            <td> {{result.email_id}} </td>
+            <td> {{result.name}} </td>
+            <td> {{result.password}} </td>
+            <td> {{result.dob}} </td>
+            <td> {{result.age}} </td>
+            <td> {{result.mobile}} </td>
+
+             <td><a href="editUser/{{result.user_id}}">Edit</a></td>
+             <td><a href="delUser/{{result.user_id}}">Delete</a></td> 
+
+             {% comment %} <td><a href="path('editUser/' , {{result.user_id}})">Edit✍</a></td>
+             <td><a href="path('delUser/' , {{result.user_id}})">Delete</a></td> {% endcomment %}
+            
+        </tr>
+
+        {% endfor %} 
+      </table>
+  </div>
+</div>
+
+<div style="margin-left:130px">
+  <div id="Left" class="w3-container city w3-animate-left" style="display:none" >
+
+    <table class = "container"> 
+
+      <tr>
+        <th> Hackathon ID</th>
+        <th> Date</th>
+        <th> Start Time </th>
+        <th> End Time</th>
+        <th> Duration</th>
+        <th> Theme</th>
+        <th> Edit </th>
+          <th> Delete </th>
+      </tr>
+
+      {% for result in hackathondata %}
+      <tr>
+          <td> {{result.hack_id}} </td>
+          <td> {{result.date}} </td>
+          <td> {{result.s_time}} </td>
+          <td> {{result.e_time}} </td>
+          <td> {{result.duration}} </td>
+          <td> {{result.theme}} </td>
+
+           <td><a href="editUser/{{result.user_id}}">Edit</a></td>
+          <td><a href="delUser/{{result.user_id}}">Delete</a></td>
+      </tr>
+      {% endfor %} 
+    </table>
+    </div>
+  
+</div>
+
+<div style="margin-left:130px">
+  <div id="Right" class="w3-container city w3-animate-right" style="display:none" >
+
+    <table class = "container"> 
+
+      <tr>
+        <th> User ID</th>
+        <th> Hackathon ID</th>
+        <th> Domain</th>
+        <th> Edit </th>
+          <th> Delete </th>
+      </tr>
+
+      {% for result in participantdata %}
+      <tr>
+        <td> {{result.user_id}} </td>
+        <td> {{result.hack_id}} </td>
+        <td> {{result.domain}} </td>
+          
+
+           <td><a href="editUser/{{result.user_id}}">Edit</a></td>
+          <td><a href="delUser/{{result.user_id}}">Delete</a></td>
+      </tr>
+      {% endfor %} 
+    </table>
+    </div>
+  
+</div>
+  {% comment %} {% if data %}
+<div class="container py-5">
+    <table class="table table-bordered" style="background-color:Bisque">
+        <thead>
+                <th scope="col">User-ID</th>
+                <th scope="col">Email-ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Password</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Age</th>
+                <th scope="col">Mobile.No.</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for result in data %}
+      <tr>
+          <td> {{result.user_id}} </td>
+          <td> {{result.email_id}} </td>
+          <td> {{result.name}} </td>
+          <td> {{result.password}} </td>
+          <td> {{result.dob}} </td>
+          <td> {{result.age}} </td>
+          <td> {{result.mobile}} </td>
+        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %} {% endcomment %}
+
+
+  {% comment %} <div id="Left" class="w3-container city w3-animate-left" style="display:none">
+    <h2>Upcoming Contests</h2>
+    <p>All details of ongoing contest</p>
+  </div>
+
+  <div id="Right" class="w3-container city w3-animate-right" style="display:none">
+    <h2>Sponsor Details</h2>
+    <p>Sponsor</p>
+    <p>All details of the Sponsors</p>
+  </div>
+
+  <div id="Top1" class="w3-container city w3-animate-right" style="display:none">
+    <h2>Organizer</h2>
+    <p>London is the capital city of England.</p>
+    <p>It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+  </div>
+
+  
+  <div id="Top2" class="w3-container city w3-animate-top" style="display:none">
+    <h2>Participants Details</h2>
+    <p>Participants</p>
+    <p>All details of the Participants</p>
+  </div>
+
+  <div id="Top3" class="w3-container city w3-animate-top" style="display:none">
+    <h2>Team Details</h2>
+    <p>Team</p>
+    <p>All details of the Team</p>
+  </div>
+
+  <div id="Top4" class="w3-container city w3-animate-top" style="display:none">
+    <h2>Team_info Details</h2>
+    <p>Team_info</p>
+    <p>All details of the Team_info</p>
+  </div>
+
+  <div id="Top5" class="w3-container city w3-animate-top" style="display:none">
+    <h2>Evaluation Details</h2>
+    <p>Evaluation</p>
+    <p>All details of the Evaluation</p>
+  </div>
+
+  <div id="Top6" class="w3-container city w3-animate-top" style="display:none">
+    <h2>Submission Details</h2>
+    <p>Submission</p>
+    <p>All details of the Submission</p>
+  </div>
+
+  <div id="Top7" class="w3-container city w3-animate-top" style="display:none">
+    <h2>Judge Details</h2>
+    <p>Judge</p>
+    <p>All details of the Judge</p>
+  </div>
+
+  <!-- <div id="Bottom" class="w3-container city w3-animate-bottom" style="display:none">
+    <h2>Slide in from bottom</h2>
+    <p>Paris is the capital of France.</p> 
+    <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+  </div>
+
+  <div id="Zoom" class="w3-container city w3-animate-zoom" style="display:none">
+    <h2>Zoom in</h2>
+    <p>Tokyo is the capital of Japan.</p>
+    <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+  </div> -->
+
+</div> {% endcomment %}
+
+<script>
+function openLink(evt, animName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(animName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
+
+</body>
+</html>

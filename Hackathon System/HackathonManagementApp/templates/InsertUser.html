@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body  {
+            margin: 0;
+            font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            background-color: #fffff;
+            height: 500px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+        }
+    </style>
+    <title> Cycling Stats </title>
+</head>
+<left>
+    <a href="{% url 'Hackathon_Detail' %}">
+        <button class = "btn-primary" style = "background-color: #ef6123;color: white;border: none;margin: 1%;padding: 0.6%;font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;">Database Details</button>
+    </a>
+</left>
+<body>
+
+
+    <center>
+        <h1 style="color:#ef6123;"> Insert User </h1>
+
+        
+        <form method="POST" action="InsertUser">
+            {% csrf_token %}
+        <table bgcolor="lightblue" style= "padding: 1%">
+            <tr>
+                <td> User ID </td>
+                <td><input type="text" placeholder="Enter User ID" name="user_id"></td>
+            </tr>
+            <tr>
+                <td> E-mail </td>
+                <td><input type="email" placeholder="Enter E-mail" name="email_id"></td>
+            </tr>
+            <tr>
+                <td> User name </td>
+                <td>
+                    <input type="text" placeholder="Enter User name" name="name"></td>
+                </td>
+            </tr>
+            <tr>
+                <td> password </td>
+                <td><input type="password" placeholder="Enter password" name="password"></td>
+            </tr>
+            <tr>
+                <td> DOB </td>
+                <td><input type="date" placeholder="Enter Date of birth" name="dob"></td>
+            </tr>
+            <tr>
+                <td> Age </td>
+                <td><input type="text" placeholder="Enter age " name="age"></td>
+            </tr>
+            <tr>
+                <td> Mobile number </td>
+                <td><input type="text" placeholder="Enter mobile number " name="mobile"></td>
+            </tr>
+
+            <tr>
+                <td> <input class = "btn-primary" style = "background-color: #ef6123;color: white;border: none;margin: 1%;padding: 0.6%;font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold; padding: 4%" type="submit" value="Insert"> </td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: Green;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </br>
+    </br>
+    <a href="{% url 'Hackathon_Detail' %}">
+        <input class = "btn-primary" style = "background-color: #ef6123;color: white;border: none;margin: 1%;padding: 0.6%;font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;" type="submit" value="Go Back">
+    </a>
+    </center>
+    
+</body>
+</html>

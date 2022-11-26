@@ -1,0 +1,92 @@
+ <!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;
+            background-color: #fffff;
+            height: 500px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+        }  
+
+        
+    </style>  
+    <title> Update User </title>
+</head>
+
+<body>
+<left>
+    <a href="{% url 'index' %}">
+        <button class = "btn-primary" style = "background-color: #ef6123;color: white;border: none;margin: 1%;padding: 0.6%;font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;">HomePage</button>
+    </a>
+</left>
+
+
+<left>
+    <a href="{% url 'Hackathon_Detail' %}">
+        <button class = "btn-primary" style = "background-color: #ef6123;color: white;border: none;padding: 0.6%;font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;" >Database Details</button>
+    </a>
+</left>
+
+    <center>
+        <h1 style="color:#ef6123;"> Edit User Records </h1>
+    </hr>
+    
+        <form method="POST" action="/updateUser/{{User.user_id}}">
+       
+            {% csrf_token%}
+            <table bgcolor= "lightblue" style = "padding: 1%">
+                <tr>
+                    <td>User ID</td>
+                    <td><input type="text" name="user_id" value="{{User.user_id}}" readonly></td>
+                </tr>
+    
+                <tr>
+                    <td>Email ID</td>
+                    <td><input type="text" name="email_id" value="{{User.email_id}}" ></td>
+                </tr>
+    
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name" value="{{User.name}}" ></td>
+                </tr>
+    
+                <tr>
+                    <td>Password</td>
+                    <td><input type="text" name="password" value="{{User.password}}" ></td>
+                </tr>
+    
+                <tr>
+                    <td>DOB</td>
+                    <td><input type="text" name="dob" value="{{User.dob}}" ></td>
+                </tr>
+    
+                <tr>
+                    <td>Age</td>
+                    <td><input type="text" name="age" value="{{User.age}}" ></td>
+                </tr>
+    
+                <tr>
+                    <td>Mobile Number</td>
+                    <td><input type="text" name="mobile" value="{{User.mobile}}" ></td>
+                </tr>
+
+            <tr>
+                <td><input class = "btn-primary" style = "background-color: #ef6123;color: white;border: none;padding: 0.6%;font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold; padding: 4%" type="submit" value="Update Record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html> 
+
